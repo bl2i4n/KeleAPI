@@ -20,7 +20,7 @@ class Kele
   end
 
   def get_mentor_availability(id)
-    resposne = self.class.get(ser_uri("mentors/#{id}/student_availability"), headers: {"authorization" => @auth_token})
+    resposne = self.class.get(set_uri("mentors/#{id}/student_availability"), headers: {"authorization" => @auth_token})
     @mentor_data = JSON.parse(response.body)
   end
 
