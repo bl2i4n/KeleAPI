@@ -3,6 +3,7 @@ require "httparty"
 class Kele
   attr_reader :email, :password
   include HTTParty
+  attr_accessor :auth_token
 
   def initialize(email, password)
     base_uri = 'https://www.bloc.io/api/v1/sessions'
