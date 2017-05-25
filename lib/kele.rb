@@ -26,15 +26,17 @@ class Kele
     @mentor_data = JSON.parse(response.body)
   end
 
-  # def get_roadmap(id)
-  #   response = self.class.get(set_uri("roadmaps/#{id}"), headers: {"authorization" => @auth_token})
-  #   @roadmap_data = JSON.parse(response.body)
-  # end
-  #
-  # def get_checkpoint(id)
-  #   response = self.class.get(set_uri("checkpoints/#{id}"), headers: {"authorization" => @auth_token})
-  #   @checkpoint_data = JSON.parse(response.body)
-  # end
+  def get_messages(page)
+    response = self.class.get(set_uri("message_threads"), {headers: {authorization: @auth_token}, body: {"page": "#{page}"}})
+    @messages = JSON.parse(response.body)
+  end
+
+  def create_message()
+    @from = from
+    @to = to
+    @message = message
+    response = self.class.post(set_uri("messages"), {headers: {authorization: @auth_token}, body: {sender: @from, recipient_id: @to, "stripped-text" => @message }})
+  end
 
   private
 
