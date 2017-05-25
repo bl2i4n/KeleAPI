@@ -1,6 +1,6 @@
 require "httparty"
 require "json"
-require "roadmap.rb"
+require "roadmap"
 
 class Kele
   attr_reader :email, :password
