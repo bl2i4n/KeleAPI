@@ -31,7 +31,7 @@ class Kele
     @messages = JSON.parse(response.body)
   end
 
-  def create_message()
+  def create_message(from, to, message)
     @from = from
     @to = to
     @message = message
