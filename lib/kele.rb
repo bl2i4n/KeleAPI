@@ -48,6 +48,15 @@ class Kele
      body: {assignment_branch: @assignment_branch, assignment_commit_link: @assignment_commit_link, checkpoint_id: @id, comment: @comment, enrollment_id: 25719}})
   end
 
+  def update_submission(id, checkpoint_id, enrollment_id)
+    @id = id
+    @checkpoint_id = checkpoint_id
+    @enrollment_id = enrollment_id
+    response = self.class.post(set_uri("updated_submissions"),
+    {headers: {authorization: @auth_token},
+     body: {id: @id, checkpoint_id: @checkpoint_id, enrollment_id: 25719}})
+  end
+
   private
 
   def set_uri(endpoint)
