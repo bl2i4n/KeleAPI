@@ -1,6 +1,24 @@
 require "httparty"
 require "json"
 require "./lib/roadmap.rb"
+require 'rubygems'
+require 'test/unit'
+require 'vcr'
+
+VCR.configure do |config|
+  config.cassette_library_dir = "log/vcr_cassettes"
+  config.hook_into :webmock
+end
+
+class VCRTest < Test::Unit::TestCase
+  def test_bloc_dot_com
+    VCR.use_cassette("synopsis") do
+      response = Net::HTTP.get_response(URI('https://www.bloc.io/api/v1/'))
+      assert_match 'https://www.bloc.io/api/v1/', response.body
+    end
+  end
+end
+
 
 class Kele
   attr_reader :email, :password
